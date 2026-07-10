@@ -2271,10 +2271,8 @@ export class ScriptsController {
       return;
     }
 
-    // Clears previous editor section root instance
-    this._root.clear();
+    // Points the root editor section instance to the (possibly new) scripts folder
     this._root.rename(scriptsFolderPath);
-    this._clipboard = [];
 
     // Updates load order file path
     this._loadOrderFilePath = vscode.Uri.joinPath(
@@ -2285,14 +2283,36 @@ export class ScriptsController {
     // Create scripts folder path if it does not exists
     fileutils.createFolder(scriptsFolderPath.fsPath, { recursive: true });
 
+    // Rebuilds the tree from what is currently on disk
+    this.syncFromDisk();
+
+    // Saves load order after reading and scanning
+    this._saveLoadOrder(this._root.nestedChildren());
+  }
+
+  /**
+   * Re-reads load_order.txt and rescans the scripts folder for untracked entries, rebuilding
+   * the in-memory tree from what's currently on disk.
+   *
+   * Does **not** save the load order file, callers decide when to persist.
+   *
+   * Clears the clipboard as a side effect (same as a full restart), since previously held
+   * editor section instances no longer belong to the rebuilt tree.
+   *
+   * This assumes the scripts folder path and the load order file path are already correct,
+   * it does not re-determine them, so it is safe to call on an already active project (e.g.
+   * to resync after external file system changes).
+   */
+  syncFromDisk() {
+    // Clears previous editor section root instance
+    this._root.clear();
+    this._clipboard = [];
+
     // Reads the load order file
     this._readLoadOrder();
 
     // Scans the scripts directory for new files
     this._scan();
-
-    // Saves load order after reading and scanning
-    this._saveLoadOrder(this._root.nestedChildren());
   }
 
   /**
