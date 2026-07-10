@@ -56,6 +56,12 @@
         "icon": "$(folder-opened)"
       },
       {
+        "command": "rgss-script-editor.reloadFromLoadOrder",
+        "title": "%command.reloadFromLoadOrder.title%",
+        "category": "RGSS Script Editor",
+        "icon": "$(refresh)"
+      },
+      {
         "command": "rgss-script-editor.extractScripts",
         "title": "%command.extractScripts.title%",
         "category": "RGSS Script Editor",

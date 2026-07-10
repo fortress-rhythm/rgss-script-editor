@@ -1,6 +1,7 @@
 {
 	"command.setProjectFolder.title": "Set Project Folder",
 	"command.openProjectFolder.title": "Open Project Folder",
+	"command.reloadFromLoadOrder.title": "Reload From Load Order File",
 	"command.extractScripts.title": "Extract Scripts",
 	"command.importScripts.title": "Import Scripts From Bundle File",
 	"command.createScriptLoader.title": "Create Script Loader",

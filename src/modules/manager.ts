@@ -276,6 +276,31 @@ export async function openProjectFolder() {
 }
 
 /**
+ * Forces a full reload of the current project from disk, re-reading load_order.txt, without
+ * prompting the user to pick a workspace folder.
+ *
+ * Reuses the existing setProjectFolder() pipeline, so it re-validates the project configuration,
+ * updates the gameplay controller and file watchers, and refreshes the UI exactly like picking
+ * the current folder again from rgss-script-editor.setProjectFolder would.
+ *
+ * No-op if no project folder is currently active.
+ * @returns A promise
+ */
+export async function reloadFromLoadOrder() {
+  try {
+    const info = extensionConfig.getInfo();
+    if (!info) {
+      logger.logWarning('No active project folder to reload!');
+      return;
+    }
+    await setProjectFolder(info.projectFolderPath);
+  } catch (error) {
+    logger.logErrorUnknown(error);
+    showBasicErrorMessage();
+  }
+}
+
+/**
  * Extracts all scripts from the bundled file into the script folder.
  * @returns A promise
  */

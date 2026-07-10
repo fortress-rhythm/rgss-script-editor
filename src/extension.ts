@@ -62,6 +62,16 @@ export function activate(context: vscode.ExtensionContext) {
     )
   );
 
+  // Reload from load order file command (no folder picker)
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      'rgss-script-editor.reloadFromLoadOrder',
+      () => {
+        manager.reloadFromLoadOrder();
+      }
+    )
+  );
+
   // Extract scripts
   context.subscriptions.push(
     vscode.commands.registerCommand('rgss-script-editor.extractScripts', () => {

@@ -1,6 +1,7 @@
 {
 	"command.setProjectFolder.title": "Establecer carpeta del proyecto",
 	"command.openProjectFolder.title": "Abrir carpeta del proyecto",
+	"command.reloadFromLoadOrder.title": "Recargar desde el archivo de orden de carga",
 	"command.extractScripts.title": "Extraer scripts",
 	"command.importScripts.title": "Importar scripts desde fichero compilado",
 	"command.createScriptLoader.title": "Crear cargador de scripts",
