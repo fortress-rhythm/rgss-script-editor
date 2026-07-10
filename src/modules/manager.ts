@@ -1346,6 +1346,11 @@ export async function onDidChangeConfiguration(
  */
 async function watcherScriptOnDidCreate(uri: vscode.Uri) {
   try {
+    // Resyncs the in-memory tree with what is currently on disk first, so a
+    // hand-edited load order file isn't overwritten by a stale snapshot when
+    // this event's change gets applied and saved below.
+    extensionScripts.syncFromDisk();
+
     // Check if it is root path
     if (extensionScripts.root.isPath(uri)) {
       return;
@@ -1396,6 +1401,11 @@ async function watcherScriptOnDidCreate(uri: vscode.Uri) {
  */
 async function watcherScriptOnDidDelete(uri: vscode.Uri) {
   try {
+    // Resyncs the in-memory tree with what is currently on disk first, so a
+    // hand-edited load order file isn't overwritten by a stale snapshot when
+    // this event's change gets applied and saved below.
+    extensionScripts.syncFromDisk();
+
     logger.logInfo(`(Watcher) Entry deleted: "${uri.fsPath}"`);
 
     // Find child instance that matches the deleted path.
