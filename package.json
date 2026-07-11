@@ -1,5 +1,5 @@
 {
-  "icon": "./icons/icon.png",
+  "icon": "./icons/icon_alt.png",
   "name": "rgss-script-editor-hand-edit-safe",
   "displayName": "RGSS Script Editor: Hand-Edit Safe",
   "description": "A fork of SnowSzn's RGSS Script Editor that lets you hand-edit load_order.txt and the scripts folder (terminal, git, any text editor) without the extension silently clobbering those edits. Use VS Code as the code editor for RPG Maker XP/VX/VX Ace game projects.",
