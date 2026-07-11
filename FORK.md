@@ -8,9 +8,13 @@ safety changes so
 any text editor) **without the extension silently clobbering those edits**,
 while leaving every GUI-driven code path unchanged.
 
-Packaged as a distinct extension id (`SnowSzn.rgss-script-editor-fork`,
-displayed as **RGSS Script Editor (Fork)**) so VS Code's update check can't
-silently reinstall the Marketplace build over it.
+Packaged as a distinct extension id (`fortress-rhythm.rgss-script-editor-hand-edit-safe`,
+displayed as **RGSS Script Editor: Hand-Edit Safe**) so VS Code's update check
+can't silently reinstall the Marketplace build over it.
+
+Publisher (`fortress-rhythm`) and author (`SnowSzn`) are deliberately kept
+distinct in `package.json`: SnowSzn wrote the original extension this is
+forked from, and fortress-rhythm packages/maintains this fork.
 
 ---
 
@@ -143,8 +147,9 @@ something regressed. Run each once in the dev host:
 
 ### Extension identity
 
-- [ ] Extensions list shows **RGSS Script Editor (Fork)** `1.7.0` with id
-      `SnowSzn.rgss-script-editor-fork`, distinct from the Marketplace build.
+- [ ] Extensions list shows **RGSS Script Editor: Hand-Edit Safe** `1.7.0` with
+      id `fortress-rhythm.rgss-script-editor-hand-edit-safe`, distinct from the
+      Marketplace build.
 - [ ] Only one build watches the scripts folder at a time — disable/uninstall
       the Marketplace `SnowSzn.rgss-script-editor` for this workspace. (Two
       watchers on the same `**` glob both mutating `load_order.txt` is not a
@@ -188,13 +193,13 @@ drift inside `_restart()` and the two watcher functions — not logic collisions
 Resolve, re-run `yarn run compile`, then walk the regression checklist above.
 
 After rebasing, **re-apply the packaging identity** if upstream's `package.json`
-overwrote it: `name` → `rgss-script-editor-fork`, `displayName` →
-`RGSS Script Editor (Fork)`, and bump `version` above the upstream base. Then
-repackage:
+overwrote it: `name` → `rgss-script-editor-hand-edit-safe`, `displayName` →
+`RGSS Script Editor: Hand-Edit Safe`, `publisher` → `fortress-rhythm`, and bump
+`version` above the upstream base. Then repackage:
 
 ```sh
 mkdir -p dist
-npx @vscode/vsce package --out ./dist/rgss-script-editor-fork-<version>.vsix
+npx @vscode/vsce package --out ./dist/rgss-script-editor-hand-edit-safe-<version>.vsix
 ```
 
 Install via **Extensions: Install from VSIX…** and disable the Marketplace
