@@ -2,8 +2,16 @@
     <img src='./icons/logo.png'>
 </p>
 
-<h1 align="center">RGSS Script Editor</h1>
+<h1 align="center">RGSS Script Editor: Hand-Edit Safe</h1>
 <h3 align="center">An advanced script editor for RPG Maker XP/VX/VX Ace inside VSCode</h3>
+
+<p align="center">
+    <a href="./package.json"><img src="https://img.shields.io/badge/version-1.7.0-blue" alt="Version"></a>
+    <a href="./LICENSE.md"><img src="https://img.shields.io/github/license/fortress-rhythm/rgss-script-editor" alt="License"></a>
+    <a href="https://github.com/SnowSzn/rgss-script-editor"><img src="https://img.shields.io/badge/fork%20of-SnowSzn%2Frgss--script--editor-blue" alt="Fork of SnowSzn/rgss-script-editor"></a>
+</p>
+
+> This is a fork of [SnowSzn/rgss-script-editor](https://github.com/SnowSzn/rgss-script-editor) maintained by [fortress-rhythm](https://github.com/fortress-rhythm). All credit for the original extension goes to SnowSzn — see [FORK.md](./FORK.md) for exactly what this fork changes and why.
 
 ## 📋 Table of Contents
 
@@ -77,6 +85,17 @@
 - **⚠️ Not officially tested ⚠️**
 
 ## 📦 Download
+
+This fork isn't published on the Marketplace — install it from a `.vsix` build:
+
+```sh
+yarn install
+npx @vscode/vsce package --out ./dist/rgss-script-editor-hand-edit-safe.vsix
+```
+
+Then in VS Code: **Extensions → ⋯ → Install from VSIX…** and select the built file. See [FORK.md](./FORK.md) for the full rebase/packaging workflow.
+
+Looking for the original, unforked extension instead? Get it from:
 
 - [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=SnowSzn.rgss-script-editor)
 - [Open VSX Marketplace](https://open-vsx.org/extension/SnowSzn/rgss-script-editor)
