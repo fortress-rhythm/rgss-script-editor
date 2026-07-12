@@ -1,35 +1,33 @@
 # Development files
 .vscode/**
 .vscode-test/**
-.idea/
+.idea/**
 .git/**
 .gitignore
 .gitattributes
 
-# Source (compiled to out/)
+# Version control / package manager metadata
+.github/**
+.yarnrc
+.yarnrc.yml
+.yarn/**
+
+# Source & build config (compiled to out/)
 src/**
-**/tsconfig.json
-**/.eslintrc.json
 **/*.ts
 **/*.map
+tsconfig.json
+.eslintrc*
 
-# Config files
-.yarnrc
-.npmrc
-.env
-.env.local
-
-# Test & build
+# Test & build artifacts
 coverage/**
 dist/**
-
-# Docs & misc
 vsc-extension-quickstart.md
-FORK.md
-CHANGELOG.md
-LICENSE.md
-images/**
 
-# Dependencies (already resolved at build time)
+# Dependencies (keep only runtime deps)
 node_modules/**
-.yarn/cache/**
+!node_modules/@hyrious/**
+
+# Config files
+.npmrc
+.env*
