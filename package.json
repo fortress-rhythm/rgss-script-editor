@@ -36,6 +36,7 @@
     "url": "https://github.com/fortress-rhythm/rgss-script-editor/issues"
   },
   "version": "1.7.0",
+  "packageManager": "yarn@4.17.1",
   "engines": {
     "vscode": "^1.84.0"
   },
