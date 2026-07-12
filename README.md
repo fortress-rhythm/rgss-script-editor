@@ -89,11 +89,14 @@
 Install this fork from a `.vsix` build:
 
 ```sh
+corepack enable  # first time only; pins the Yarn version this repo expects
 yarn install
 yarn run generate-package
 ```
 
 The `.vsix` file is created in `./dist/`. Then in VS Code: **Extensions → ⋯ → Install from VSIX…** and select the built file. See [FORK.md](./FORK.md) for the full rebase/packaging workflow.
+
+> This repo pins its package manager via `packageManager` in `package.json` (currently Yarn 4.x). `corepack enable` makes Node use that exact version automatically. **Note for Debian/Ubuntu:** the distro-packaged `nodejs` apt package does not ship Corepack — install it separately with `npm install -g corepack` first if `corepack: command not found`.
 
 Looking for the original, unforked extension instead? Get it from:
 
