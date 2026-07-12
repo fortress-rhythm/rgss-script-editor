@@ -1,10 +1,26 @@
+# Editor / IDE
 .vscode/**
 .vscode-test/**
-src/**
+.idea/**
+
+# Version control / package manager metadata
 .gitignore
+.github/**
 .yarnrc
-vsc-extension-quickstart.md
-**/tsconfig.json
-**/.eslintrc.json
-**/*.map
+.yarnrc.yml
+.yarn/**
+
+# Source & build config (not needed at runtime if bundled)
+src/**
 **/*.ts
+**/*.map
+tsconfig.json
+.eslintrc*
+vsc-extension-quickstart.md
+
+# Dependencies (keep only what's actually required at runtime)
+node_modules/**
+!node_modules/@hyrious/**
+
+# Misc
+*.log

@@ -24,3 +24,14 @@ Thumbs.db
 # Editor / logs
 *.log
 .idea/
+
+*.yarn*
+.yarn/
+.vscode/*
+*.log.DS_Store
+*.e
+
+.idea/
+*.docx
+*.rtf
+*.xlsx
