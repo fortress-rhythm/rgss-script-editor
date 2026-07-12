@@ -1,5 +1,43 @@
+# Build output
 out
 dist
+
+# Dependencies (keep yarn.lock and .yarn for reproducible builds)
 node_modules
+
+# Test
 .vscode-test/
+coverage/
+
+# Packages
 *.vsix
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/tasks.json
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Misc
+*.tsbuildinfo
+.turbo/
