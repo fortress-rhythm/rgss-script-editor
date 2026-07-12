@@ -86,14 +86,14 @@
 
 ## 📦 Download
 
-This fork isn't published on the Marketplace — install it from a `.vsix` build:
+Install this fork from a `.vsix` build:
 
 ```sh
 yarn install
-npx @vscode/vsce package --out ./dist/rgss-script-editor-hand-edit-safe.vsix
+yarn run generate-package
 ```
 
-Then in VS Code: **Extensions → ⋯ → Install from VSIX…** and select the built file. See [FORK.md](./FORK.md) for the full rebase/packaging workflow.
+The `.vsix` file is created in `./dist/`. Then in VS Code: **Extensions → ⋯ → Install from VSIX…** and select the built file. See [FORK.md](./FORK.md) for the full rebase/packaging workflow.
 
 Looking for the original, unforked extension instead? Get it from:
 
