@@ -36,6 +36,7 @@
     "url": "https://github.com/fortress-rhythm/rgss-script-editor/issues"
   },
   "version": "1.7.0",
+  "packageManager": "yarn@4.17.1",
   "engines": {
     "vscode": "^1.84.0"
   },
@@ -632,7 +633,7 @@
     "pretest": "yarn run compile && yarn run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
-    "generate-package": "vsce package --out ./dist",
+    "generate-package": "node -e \"require('fs').mkdirSync('dist',{recursive:true})\" && vsce package --out ./dist --no-yarn",
     "l10n-gen": "npx @vscode/l10n-dev export --outDir ./l10n ./src"
   },
   "dependencies": {
@@ -646,6 +647,7 @@
     "@typescript-eslint/parser": "^8.32.1",
     "@vscode/l10n-dev": "^0.0.35",
     "@vscode/test-electron": "^2.3.6",
+    "@vscode/vsce": "^3.9.2",
     "eslint": "^9.26.0",
     "glob": "^11.0.2",
     "mocha": "^11.2.2",

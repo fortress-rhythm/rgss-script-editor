@@ -2,6 +2,15 @@
 
 All notable changes to the "rgss-script-editor" extension will be documented in this file.
 
+## [Unreleased]
+
+### Changed
+
+- Improved build configuration and packaging
+  - Cleaner `.vscodeignore` excludes development files from `.vsix` distribution
+  - Updated `.gitignore` for better developer experience
+  - Standardized `vsce` packaging via `yarn run generate-package`
+
 ## [1.6.1] - 18/10/2025
 
 ### Fixed
