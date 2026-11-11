@@ -2,14 +2,31 @@
 
 All notable changes to the "rgss-script-editor" extension will be documented in this file.
 
-## [Unreleased]
+## [1.7.0] - fork (fortress-rhythm)
+
+First release of the **RGSS Script Editor: Hand-Edit Safe** fork, based on
+upstream 1.6.1 (`052c782`). Not published to any store; build the `.vsix`
+yourself (see README, "Download"). Details in `FORK.md`.
+
+### Added
+
+- `RGSS Script Editor: Reload From Load Order File` command
+  (`rgss-script-editor.reloadFromLoadOrder`): full reload from disk with no
+  folder picker
+
+### Fixed
+
+- External create/delete of a script no longer overwrites hand-edits to
+  `load_order.txt`: the watchers resync from disk before saving
 
 ### Changed
 
-- Improved build configuration and packaging
-  - Cleaner `.vscodeignore` excludes development files from `.vsix` distribution
-  - Updated `.gitignore` for better developer experience
-  - Standardized `vsce` packaging via `yarn run generate-package`
+- Distinct extension id `fortress-rhythm.rgss-script-editor-hand-edit-safe`
+  so the store build cannot update over it
+- Build pinned to Yarn 4 (`packageManager`) and a local `@vscode/vsce`;
+  `yarn run generate-package` writes the `.vsix` to `dist/`
+- `yarn.lock` regenerated in Yarn 4 format to match the pinned Yarn
+- Cleaner `.vscodeignore` (only `out/`, assets and the runtime dependency ship)
 
 ## [1.6.1] - 18/10/2025
 

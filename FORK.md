@@ -190,7 +190,7 @@ git rebase upstream/master
 Because neither change touches the GUI section-command bodies, the UI layer, or
 the config/gameplay controllers, conflicts should be limited to line-number
 drift inside `_restart()` and the two watcher functions — not logic collisions.
-Resolve, re-run `yarn run compile`, then walk the regression checklist above.
+Resolve, re-run `corepack yarn run compile`, then walk the regression checklist above.
 
 After rebasing, **re-apply the packaging identity** if upstream's `package.json`
 overwrote it: `name` → `rgss-script-editor-hand-edit-safe`, `displayName` →
@@ -198,9 +198,11 @@ overwrote it: `name` → `rgss-script-editor-hand-edit-safe`, `displayName` →
 `version` above the upstream base. Then repackage:
 
 ```sh
-mkdir -p dist
-npx @vscode/vsce package --out ./dist/rgss-script-editor-hand-edit-safe-<version>.vsix
+corepack yarn install
+corepack yarn run generate-package
 ```
 
-Install via **Extensions: Install from VSIX…** and disable the Marketplace
-original for the workspace.
+Install via **Extensions: Install from VSIX...** (or
+`code --install-extension dist/<file>.vsix --force`) and disable the
+Marketplace original for the workspace. Full build/install/update steps are in
+the README's "Download" section.

@@ -23,6 +23,11 @@
   - [Linux](#linux)
   - [macOS](#macos)
 - [📦 Download](#-download)
+  - [Original or this fork?](#original-or-this-fork)
+  - [Build this fork](#build-this-fork)
+  - [Install the .vsix](#install-the-vsix)
+  - [Update the fork](#update-the-fork)
+  - [Try a change without installing](#try-a-change-without-installing)
 - [🚀 Getting Started](#-getting-started)
   - [1. Open Your Project Folder](#1-open-your-project-folder)
   - [2. Extract Scripts](#2-extract-scripts)
@@ -86,22 +91,100 @@
 
 ## 📦 Download
 
-Install this fork from a `.vsix` build:
+### Original or this fork?
 
-```sh
-corepack enable  # first time only; pins the Yarn version this repo expects
-yarn install
-yarn run generate-package
-```
-
-The `.vsix` file is created in `./dist/`. Then in VS Code: **Extensions → ⋯ → Install from VSIX…** and select the built file. See [FORK.md](./FORK.md) for the full rebase/packaging workflow.
-
-> This repo pins its package manager via `packageManager` in `package.json` (currently Yarn 4.x). `corepack enable` makes Node use that exact version automatically. **Note for Debian/Ubuntu:** the distro-packaged `nodejs` apt package does not ship Corepack — install it separately with `npm install -g corepack` first if `corepack: command not found`.
-
-Looking for the original, unforked extension instead? Get it from:
+**SnowSzn's original extension is on the store** -- in VS Code open
+**Extensions** (`Ctrl+Shift+X`) and search for **RGSS Script Editor** (id
+`SnowSzn.rgss-script-editor`), or get it from:
 
 - [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=SnowSzn.rgss-script-editor)
 - [Open VSX Marketplace](https://open-vsx.org/extension/SnowSzn/rgss-script-editor)
+
+**This fork (RGSS Script Editor: Hand-Edit Safe) is NOT on any store.** You
+build a `.vsix` file from this repo and install that file. Use the fork if you
+edit `load_order.txt` or the scripts folder outside VS Code (terminal, git,
+Claude Code, another editor) -- the original can overwrite those edits with its
+in-memory copy. See [FORK.md](./FORK.md) for exactly what changed.
+
+Install **one or the other per workspace, never both** -- two copies watching
+the same scripts folder will fight over `load_order.txt`. The fork has its own
+id (`fortress-rhythm.rgss-script-editor-hand-edit-safe`), so VS Code will not
+replace it with the store build on update.
+
+### Build this fork
+
+Needs [Node.js](https://nodejs.org/) 20 or newer (Corepack is bundled with
+Node up to 24; on Node 25+ or the Debian/Ubuntu `nodejs` package, first run
+`npm install -g corepack`) and git. The commands work the same in Git Bash,
+PowerShell or a Linux/macOS shell.
+
+```sh
+git clone https://github.com/fortress-rhythm/rgss-script-editor
+cd rgss-script-editor
+corepack yarn install
+corepack yarn run generate-package
+```
+
+The result is `dist/rgss-script-editor-hand-edit-safe-<version>.vsix`.
+
+- `corepack yarn ...` runs the exact Yarn version pinned in `package.json`
+  (`packageManager`, currently Yarn 4) and needs no admin rights. If you prefer
+  plain `yarn ...`, run `corepack enable` once instead (on Windows that needs
+  an Administrator terminal, since it writes next to `node.exe`).
+- `generate-package` compiles the TypeScript (`yarn run compile`) and packages
+  with the pinned `@vscode/vsce`; you do not need `vsce` installed globally.
+- If `yarn install` modifies `yarn.lock`, something is off (wrong Yarn
+  version) -- check `corepack yarn --version` matches `packageManager`.
+
+### Install the .vsix
+
+1. In VS Code, disable or uninstall **RGSS Script Editor** by SnowSzn if you
+   have it (at least for the RPG Maker workspace).
+2. Either **Extensions -> ... (top-right menu) -> Install from VSIX...** and
+   pick the file in `dist/`, or from a terminal:
+
+   ```sh
+   code --install-extension dist/rgss-script-editor-hand-edit-safe-1.7.0.vsix --force
+   ```
+
+3. Reload the window. The Extensions list should show **RGSS Script Editor:
+   Hand-Edit Safe** with the version from `package.json`.
+4. Optional: bind the fork's no-picker reload command (see FORK.md) in your
+   `keybindings.json`:
+
+   ```json
+   {
+     "key": "ctrl+alt+r",
+     "command": "rgss-script-editor.reloadFromLoadOrder",
+     "when": "rgss-script-editor.openedFolder"
+   }
+   ```
+
+Your RPG Maker project does not need to change: the fork reads the same
+`Scripts/` folder, `load_order.txt` and `Data/Scripts.rxdata` loader as the
+original, and the `rgss-script-editor.*` settings keep their names. (Because
+the extension id differs, VS Code-held extension state -- such as which folder
+was last opened -- starts fresh; pick the project folder once if prompted.)
+
+### Update the fork
+
+```sh
+git pull
+corepack yarn install
+corepack yarn run generate-package
+code --install-extension dist/rgss-script-editor-hand-edit-safe-<version>.vsix --force
+```
+
+`--force` reinstalls even when the version number did not change. Bump
+`version` in `package.json` (and add a CHANGELOG entry) when you change the
+code, so the Extensions list tells you which build is running.
+
+### Try a change without installing
+
+Open this repo in VS Code and press **F5**. That compiles and starts an
+**Extension Development Host** window running the source; open your RPG Maker
+project in that window. Use it to walk the regression checklist in
+[FORK.md](./FORK.md) before installing a new build.
 
 ## 🚀 Getting Started
 
